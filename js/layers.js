@@ -16,6 +16,7 @@ addLayer("r", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('r', 24)) mult = mult.times(2)
+        if (hasUpgrade('r', 33)) mult = mult.times(2)
         if (hasUpgrade('p', 11)) mult = mult.times(2)
         return mult
     },
@@ -118,7 +119,7 @@ addLayer("r", {
         },
         33: {
             title: "What Have You Done",
-            description: " ",
+            description: "x2 reset points",
             cost: new Decimal(1000),
             unlocked() { return hasUpgrade('r', 32) },
         },
