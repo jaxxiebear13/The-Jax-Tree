@@ -18,6 +18,7 @@ addLayer("r", {
         if (hasUpgrade('r', 24)) mult = mult.times(2)
         if (hasUpgrade('r', 33)) mult = mult.times(2)
         if (hasUpgrade('p', 11)) mult = mult.times(2)
+        if (hasUpgrade('p', 12)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -174,6 +175,12 @@ addLayer("p", {
             description: "x2 points gain, x2 reset points gain",
             tooltip: "After all multipliers before Prestige",
             cost: new Decimal(1),
+        },
+        12: {
+            title: "The Tree Revolving",
+            description: "x3 reset points",
+            cost: new Decimal(1),
+            unlocked() { return hasUpgrade('p', 11) },
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
