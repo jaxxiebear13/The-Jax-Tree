@@ -12,11 +12,13 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "The Release Tree",
+	num: "0.2",
+	name: "The Prestige Tree??",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.2</h3><br>
+		- Prestige has 3 upgrades currently.
 	<h3>v0.1</h3><br>
 		- Added the game.<br>
 		- Yeah<br>
