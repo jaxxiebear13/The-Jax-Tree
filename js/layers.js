@@ -135,6 +135,24 @@ addLayer("r", {
             description: "Give the entire factory up",
             cost: new Decimal(1500),
             unlocked() { return hasUpgrade('r', 34) },
+        },
+        41: {
+            title: "Use The Radiation",
+            description: "x1.1 prestige point gain",
+            cost: new Decimal(2000),
+            unlocked() { return hasUpgrade('r', 35) || hasUpgrade('p', 13)}
+        },
+        42: {
+            title: "Invent",
+            description: "x1.1 prestige point gain",
+            cost: new Decimal(3500),
+            unlocked() { return hasUpgrade('r', 41) || hasUpgrade('p', 13)}
+        },
+        43: {
+            title: "Destroy!!",
+            description: "x1.25 prestige point gain",
+            cost: new Decimal(5000),
+            unlocked() { return hasUpgrade('r', 42) || hasUpgrade('p', 13) }
         }
     },
     layerShown(){return true}
@@ -157,6 +175,9 @@ addLayer("p", {
     exponent: 0.5,
     gainMult() {
         mult = new Decimal(1)
+        if (hasUpgrade('r', 41)) mult = mult.times(1.1)
+        if (hasUpgrade('r', 42)) mult = mult.times(1.1)
+        if (hasUpgrade('r', 43)) mult = mult.times(1.25)
         return mult
     },
     gainExp() {
@@ -181,6 +202,12 @@ addLayer("p", {
             description: "x3 reset points",
             cost: new Decimal(1),
             unlocked() { return hasUpgrade('p', 11) },
+        },
+        13: {
+            title: "Add Radiation!",
+            description: "3 new Reset upgrades",
+            cost: new Decimal(2),
+            unlocked() { return hasUpgrade('p', 12) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
