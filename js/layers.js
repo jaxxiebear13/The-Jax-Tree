@@ -330,7 +330,7 @@ addLayer("auto", {
     branches: ["p"],
     row: 1,
     type: "none",
-    resource: player => player.p.points,
+    resource: player['p'].resourceName,
     color: "#530000",
     layerShown() { return hasUpgrade('p', 21) },
 })
