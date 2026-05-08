@@ -14,7 +14,7 @@ addLayer("r", {
     passiveGeneration() {
 
 
-        if (hasUpgrade('au', 11)) return 0.1
+        if (hasUpgrade('auto', 11)) return 0.1
         if (hasUpgrade('p', 21)) return 0.05
         return 0
     },
