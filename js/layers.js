@@ -29,8 +29,12 @@ addLayer("r", {
             title: "The Generic",
             description: "Double points",
             cost: new Decimal(1),
-            
         },
+        12: {
+            title: "Waste",
+            description: "+0.01 point gain",
+            cost: new Decimal(2),
+        }
     },
     layerShown(){return true}
 })
