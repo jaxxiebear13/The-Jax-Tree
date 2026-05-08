@@ -164,7 +164,9 @@ function layerDataReset(layer, keep = []) {
 
 function addPoints(layer, gain) {
 	player[layer].points = player[layer].points.add(gain).max(0)
+	// easier readability for upgrades cause im not very good at spotting stuff
 	if (hasUpgrade('r', 11)) gain = gain.times(2)
+	//
 	if (player[layer].best) player[layer].best = player[layer].best.max(player[layer].points)
 	if (player[layer].total) player[layer].total = player[layer].total.add(gain)
 }
