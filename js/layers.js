@@ -264,7 +264,7 @@ addLayer("p", {
         },
         21: {
             title: "Afford Conveyors",
-            description: "Get 5% of Reset points per second",
+            description: "Get 5% of Reset points per second, unlock further Automation in the Automation sublayer",
             tooltip: "Points * 0.05",
             cost: new Decimal(10),
             unlocked() { return hasUpgrade('p', 15) }
@@ -320,5 +320,15 @@ addLayer("ach", {
             done() { return hasUpgrade('p', 21) }
         }
     },
+})
+
+addLayer("auto", {
+    name: "Automation",
+    tooltip: "Automation",
+    symbol: "Au",
+    position: 1,
+    row: "side",
+    color: "#530000",
+    layerShown() { return hasUpgrade('p', 21) },
 })
 
