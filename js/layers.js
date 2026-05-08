@@ -165,14 +165,20 @@ addLayer("p", {
     startData() { return {
         unlocked: true,
         points: new Decimal(0),
+        resets: new Decimal(0)
     }},
     color: "#00ff6e",
+
     requires: new Decimal(1500), // Can be a function that takes requirement increases into account
     resource: "prestige points",
     baseResource: "reset points",
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
+    doReset() {
+        resets = player.p.resets.add(1)
+        player.p.resets = resets
+    },
     tabFormat: {
         "Upgrades": {
             content: ["main-display", "prestige-button", "upgrades"],
@@ -269,7 +275,12 @@ addLayer("ach", {
         14: {
             name: "Progress!",
             tooltip: "Give the factory up once.",
-            done() { return player.p.points.gte(1) },
+            done() { return player.p.resets.gte(1) },
+        },
+        15: {
+            name: "Progress?",
+            tooltip: "Give the factory up 3 times",
+            done() { return player.p.resets.gte(3) }
         }
     },
 })
