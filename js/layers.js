@@ -29,19 +29,11 @@ addLayer("r", {
             title: "The Generic",
             description: "Double points",
             cost: new Decimal(1),
-            effect() {
-                let eff = new Decimal(2)
-                return eff
-            }
         },
         12: {
             title: "Waste",
             description: "+0.01 point gain",
             cost: new Decimal(2),
-            effect() {                
-                let eff = new Decimal(0.01)
-                return eff
-            }
         }
     },
     layerShown(){return true}
