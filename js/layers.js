@@ -329,6 +329,7 @@ addLayer("auto", {
     tooltip: "Automation",
     startData() { return {
         unlocked: false,
+        points: new Decimal(0),
     }},
     symbol: "Au",
     position: 2,
