@@ -82,3 +82,21 @@ addLayer("r", {
     },
     layerShown(){return true}
 })
+
+addLayer("ach", {
+    name: "Achievements",
+    symbol: "A",
+    position: 0,
+    row: "side",
+    layerShown() { return true },
+    
+    achievements: {
+        11: {
+            name: "Reset",
+            tooltip: "Reset once.",
+            done() { return player.r.points.gte(1) },
+            unlocked() { return true }
+        },
+    },
+})
+
