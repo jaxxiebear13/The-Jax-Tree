@@ -95,13 +95,11 @@ addLayer("ach", {
             name: "Reset",
             tooltip: "Reset once.",
             done() { return player.r.points.gte(1) },
-            unlocked: true
         },
         12: {
             name: "Pointing",
             tooltip: "Get 1K points.",
             done() { return player.points.gte(1000) },
-            unlocked: true
         },
     },
 })
