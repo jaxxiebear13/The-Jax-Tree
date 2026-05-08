@@ -14,7 +14,7 @@ addLayer("r", {
     passiveGeneration() {
 
 
-        if (hasUpgrade('auto', 11)) return 0.1
+        if (hasUpgrade('p', 23)) return 0.10
         if (hasUpgrade('p', 21)) return 0.05
         return 0
     },
@@ -26,6 +26,7 @@ addLayer("r", {
         if (hasUpgrade('r', 33)) mult = mult.times(2)
         if (hasUpgrade('p', 11)) mult = mult.times(2)
         if (hasUpgrade('p', 12)) mult = mult.times(2)
+        if (hasUpgrade('p', 24)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -204,6 +205,7 @@ addLayer("p", {
         if (hasUpgrade('r', 43)) mult = mult.times(1.25)
         if (hasMilestone('p', 1)) mult = mult.times(2)   
         if (hasUpgrade('p', 15)) mult = mult.times(1.25)
+        if (hasUpgrade('p', 22)) mult = mult.times(1.25)
         return mult
     },
     gainExp() {
@@ -266,10 +268,31 @@ addLayer("p", {
         },
         21: {
             title: "Afford Conveyors",
-            description: "Get 5% of Reset points per second, unlock further Automation in the Automation sublayer",
-            tooltip: "Points * 0.05",
+            description: "Get 5% of Reset points per second",
+            tooltip: "Points * 0.05<br>Further levels are prioritized",
             cost: new Decimal(10),
             unlocked() { return hasUpgrade('p', 15) }
+        },
+        22: {
+            title: "Out of Stock",
+            description: "Lie to Consumers",
+            tooltip: "Real effect: x1.25 prestige point gain",
+            cost: new Decimal(20),
+            unlocked() { return hasUpgrade('p', 21) }
+        },
+        23: {
+            title: "Make Campaigns",
+            description: "Spread more Propaganda, 10% of Reset points per second",
+            tooltip: "Points * 0.10<br>Further levels are prioritized",
+            cost: new Decimal(30),
+            unlocked() { return hasUpgrade('p', 22) }
+        },
+        24: {
+            title: "Own Prison",
+            description: "Imprison the Suspicious",
+            tooltip: "Real effect: x2 reset point gain",
+            cost: new Decimal(50),
+            unlocked() { return hasUpgrade('p', 23) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
@@ -324,35 +347,4 @@ addLayer("ach", {
     },
 })
 
-addLayer("auto", {
-    name: "Automation",
-    tooltip: "Automation",
-    symbol: "AU",
-    position: 1,
-    row: "side",
-    color: "#8f0000",
-    layerShown() { return hasUpgrade('p', 21) },
-    resource: "automation points",
-    baseResource: "points",
-    baseAmount() { return player.points },
-    type: "normal",
-    exponent: 0.5,
-    gainMult() {
-        mult = new Decimal(1)
-        return mult
-    },
-    gainExp() {
-        return new Decimal(1)
-    },
-    hotkeys: [
-        {key: "a", description: "A: Reset for automation points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ],
-    upgrades: {
-        11: {
-            title: "Wooden Belts",
-            description: "Upgrade Reset points per second to 10%",
-            cost: new Decimal(1000),
-        },
-    },
-})
 
