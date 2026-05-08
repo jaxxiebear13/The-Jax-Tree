@@ -97,6 +97,12 @@ addLayer("ach", {
             done() { return player.r.points.gte(1) },
             unlocked() { return true }
         },
+        12: {
+            name: "Pointing",
+            tooltip: "Get 1K points.",
+            done() { return player.points.gte(1000) },
+            unlocked() { return true }
+        },
     },
 })
 
