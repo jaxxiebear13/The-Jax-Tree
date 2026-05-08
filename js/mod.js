@@ -17,7 +17,7 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.2</h3><br>
+	<h3>v0.2</h3><br>E
 		- Prestige has 3 upgrades currently.<br>
 		- Prestige MILESTONES<br>
 	<h3>v0.1</h3><br>
@@ -25,7 +25,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Yeah<br>
 		- DISCORD INVITE LINK ONLY HAS 50 USES.`
 
-let winText = `Congratulations! You won! That's cool!`
+let winText = `You won, for now... MUAAAAHAHAHAHAHAHAHAHAHAHAAHAHAHAAAAAAAEEEEE`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -58,6 +58,7 @@ function getPointGen() {
 		if (hasUpgrade('r', 25)) gain = gain.times(3)
 		if (hasUpgrade('r', 31)) gain = gain.times(player.r.points.add(1).pow(0.5))
 		if (hasUpgrade('r', 32)) gain = gain.times(player.points.add(1).pow(0.05))
+		if (hasMilestone('p', 0)) gain = gain.times(3)
 		if (hasUpgrade('p', 11)) gain = gain.times(2)
 	//
 	return gain
@@ -73,7 +74,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.p.points.gte(new Decimal("5")) && hasMilestone('p', 0)
 }
 
 

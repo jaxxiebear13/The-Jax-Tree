@@ -205,6 +205,7 @@ addLayer("p", {
         0: {
             requirementDescription: "5 prestige points",
             effectDescription: "x3 points gain",
+            tooltip: "Applied after Reset and before Prestige multipliers",
             done() { return player.p.points.gte(5) && hasUpgrade('p', 14) },
             unlocked() { return hasUpgrade('p', 14) }
         }
