@@ -74,7 +74,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.p.points.gte(new Decimal("5")) && hasMilestone('p', 0)
+	return player.p.points.gte(new Decimal("15")) && hasMilestone('p', 1) && hasAchievement('ach', 16)
 }
 
 
