@@ -11,6 +11,11 @@ addLayer("r", {
     resource: "reset points", // Name of reset currency
     baseResource: "points", // Name of resource reset is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
+    passiveGeneration() {
+        
+        if (hasUpgrade('p', 21)) return 0.05
+        return 0
+    },
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Reset currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
@@ -256,6 +261,13 @@ addLayer("p", {
             tooltip: "Applied after Reset and Prestige Milestone multipliers",
             cost: new Decimal(7),
             unlocked() { return hasUpgrade('p', 14) }
+        },
+        21: {
+            title: "Afford Conveyors",
+            description: "Get 5% of Reset points per second",
+            tooltip: "Points * 0.05",
+            cost: new Decimal(10),
+            unlocked() { return hasUpgrade('p', 15) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
