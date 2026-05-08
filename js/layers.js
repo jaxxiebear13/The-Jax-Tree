@@ -26,13 +26,13 @@ addLayer("r", {
     ],
     upgrades: {
         11: {
-            title: "The Generic",
-            description: "Double points",
+            title: "A New Tree Games!",
+            description: "Generate points",
             cost: new Decimal(1),
         },
         12: {
-            title: "Waste",
-            description: "+0.01 point gain",
+            title: "Pointer",
+            description: "+1 point gain",
             cost: new Decimal(2),
         }
     },
