@@ -332,5 +332,27 @@ addLayer("auto", {
     row: "side",
     color: "#8f0000",
     layerShown() { return hasUpgrade('p', 21) },
+    resource: "automation points",
+    baseResource: "points",
+    baseAmount() { return player.points },
+    type: "normal",
+    exponent: 0.5,
+    gainMult() {
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() {
+        return new Decimal(1)
+    },
+    hotkeys: [
+        {key: "a", description: "A: Reset for automation points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    upgrades: {
+        11: {
+            title: "Wooden Belts",
+            description: "Upgrade Reset points per second to 10%",
+            cost: new Decimal(1000),
+        },
+    },
 })
 
