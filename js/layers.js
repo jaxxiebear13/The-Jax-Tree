@@ -13,7 +13,7 @@ addLayer("r", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     passiveGeneration() {
 
-        
+
         if (hasUpgrade('au', 11)) return 0.1
         if (hasUpgrade('p', 21)) return 0.05
         return 0
@@ -327,11 +327,16 @@ addLayer("ach", {
 addLayer("auto", {
     name: "Automation",
     tooltip: "Automation",
+    startData() { return {
+        unlocked: false,
+    }},
     symbol: "Au",
     position: 2,
     branches: ["p"],
     row: 1,
     resource: "crates",
+    requires: new Decimal(25),
+    type: "normal",
     baseResource: "points",
     baseAmount() { return player.points },
     exponent: 0.5,
@@ -342,10 +347,7 @@ addLayer("auto", {
     gainExp() {
         return new Decimal(1)
     },
-
-    color: "#530000",
-    layerShown() { return hasUpgrade('p', 21) },
-
+    color: "#530000", 
     upgrades: {
         11: {
             title: "Wooden Belt",
@@ -353,5 +355,6 @@ addLayer("auto", {
             cost: new Decimal(10000),
         }
     },
+    layerShown() { return hasUpgrade('p', 21) },
 })
 
