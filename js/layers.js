@@ -88,19 +88,28 @@ addLayer("ach", {
     symbol: "A",
     position: 0,
     row: "side",
+    color: "#fff203",
     layerShown() { return true },
     
     achievements: {
         11: {
             name: "Reset",
             tooltip: "Reset once.",
+            image: "resources/images/achievements/11.png",
             done() { return player.r.points.gte(1) },
         },
         12: {
             name: "Pointing",
             tooltip: "Get 1K points.",
+            image: "resources/images/achievements/12.png",
             done() { return player.points.gte(1000) },
         },
+        13: {
+            name: "Rad Reset",
+            tooltip: "Have 100 reset points",
+            image: "resources/images/achievements/13.png",
+            done() { return player.r.points.gte(100) },
+        }
     },
 })
 
