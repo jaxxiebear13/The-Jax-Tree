@@ -34,6 +34,7 @@ addLayer("r", {
             title: "Pointer",
             description: "+1 point gain",
             cost: new Decimal(2),
+            unlocked() { return hasUpgrade('r', 11) }
         }
     },
     layerShown(){return true}
