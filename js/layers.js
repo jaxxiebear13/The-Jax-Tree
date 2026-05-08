@@ -327,8 +327,10 @@ addLayer("auto", {
     tooltip: "Automation",
     symbol: "Au",
     position: 1,
+    branches: ["p"],
     row: 1,
-    resource: "prestige points",
+    type: "none",
+    resource: player => player.p.points,
     color: "#530000",
     layerShown() { return hasUpgrade('p', 21) },
 })
