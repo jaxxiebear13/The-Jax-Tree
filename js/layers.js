@@ -12,7 +12,7 @@ addLayer("r", {
     baseResource: "points", // Name of resource reset is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     passiveGeneration() {
-        
+
         if (hasUpgrade('p', 21)) return 0.05
         return 0
     },
@@ -304,12 +304,20 @@ addLayer("ach", {
         14: {
             name: "Progress!",
             tooltip: "Give the factory up once.",
+            image: "resources/images/achievements/14.png",
             done() { return player.p.resets.gte(1) },
         },
         15: {
             name: "Progress?",
             tooltip: "Give the factory up 3 times",
+            image: "resources/images/achievements/15.png",
             done() { return player.p.resets.gte(3) }
+        },
+        16: {
+            name: "Your Fired",
+            tooltip: "Start automating Reset points",
+            image: "resources/images/achievements/16.png",
+            done() { return hasUpgrade('p', 21) }
         }
     },
 })
