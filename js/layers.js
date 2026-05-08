@@ -327,7 +327,8 @@ addLayer("auto", {
     tooltip: "Automation",
     symbol: "Au",
     position: 1,
-    row: "side",
+    row: 1,
+    resource: "prestige points",
     color: "#530000",
     layerShown() { return hasUpgrade('p', 21) },
 })
