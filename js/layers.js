@@ -330,7 +330,7 @@ addLayer("auto", {
     branches: ["p"],
     row: 1,
     type: "none",
-    resource: player['p'].resourceName,
+    resource: "prestige points",
     color: "#530000",
     layerShown() { return hasUpgrade('p', 21) },
 })
