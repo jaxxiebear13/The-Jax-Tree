@@ -195,6 +195,8 @@ addLayer("p", {
         if (hasUpgrade('r', 41)) mult = mult.times(1.1)
         if (hasUpgrade('r', 42)) mult = mult.times(1.1)
         if (hasUpgrade('r', 43)) mult = mult.times(1.25)
+        if (hasMilestone('p', 1)) mult = mult.times(2)   
+        if (hasUpgrade('p', 15)) mult = mult.times(1.25)
         return mult
     },
     gainExp() {
@@ -214,6 +216,13 @@ addLayer("p", {
             tooltip: "Applied after Reset and before Prestige multipliers",
             done() { return player.p.points.gte(5) && hasUpgrade('p', 14) },
             unlocked() { return hasUpgrade('p', 14) }
+        },
+        1: {
+            requirementDescription: "15 prestige points",
+            effectDescription: "x2 prestige point gain",
+            tooltip: "Applied after Reset multipliers and before Prestige upgrade multipliers",
+            done() { return player.p.points.gte(15) && hasMilestone('p', 0) },
+            unlocked() { return hasUpgrade('p', 14) && hasMilestone('p', 0) }
         }
     },
     upgrades: {
@@ -237,9 +246,16 @@ addLayer("p", {
         },
         14: {
             title: "Prestige Milestones",
-            description: "Unlock prestige milestones",
+            description: "Unlock prestige milestones and 2 of them",
             cost: new Decimal(3),
             unlocked() { return hasUpgrade('p', 13) }
+        },
+        15: {
+            title: "Prestige Rook",
+            description: "x1.25 prestige point gain",
+            tooltip: "Applied after Reset and Prestige Milestone multipliers",
+            cost: new Decimal(7),
+            unlocked() { return hasUpgrade('p', 14) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
