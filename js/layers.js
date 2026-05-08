@@ -181,7 +181,7 @@ addLayer("p", {
     },
     tabFormat: {
         "Upgrades": {
-            content: ["display-text", function() { return formatWhole(player.p.resets) + " prestige resets" }, "main-display", "prestige-button", "upgrades"],
+            content: ["display-text", function() { return "Prestige Resets: " + format(player.p.resets) }, "main-display", "prestige-button", "upgrades"],
             unlocked() { return hasUpgrade('p', 14) }
         },
         "Milestones": {
