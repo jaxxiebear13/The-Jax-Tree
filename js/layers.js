@@ -327,35 +327,10 @@ addLayer("ach", {
 addLayer("auto", {
     name: "Automation",
     tooltip: "Automation",
-    startData() { return {
-        unlocked: false,
-        points: new Decimal(0),
-    }},
-    symbol: "Au",
-    position: 2,
-    branches: ["p"],
-    row: 1,
-    resource: "crates",
-    requires: new Decimal(25),
-    type: "normal",
-    baseResource: "points",
-    baseAmount() { return player.points },
-    exponent: 0.5,
-    gainMult() {
-        mult = new Decimal(1)
-        return mult
-    },
-    gainExp() {
-        return new Decimal(1)
-    },
-    color: "#530000", 
-    upgrades: {
-        11: {
-            title: "Wooden Belt",
-            description: "Generate 10% of reset points per second",
-            cost: new Decimal(10000),
-        }
-    },
+    symbol: "AU",
+    position: 1,
+    row: "side",
+    color: "#8f0000",
     layerShown() { return hasUpgrade('p', 21) },
 })
 
