@@ -18,7 +18,8 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.2</h3><br>
-		- Prestige has 3 upgrades currently.
+		- Prestige has 3 upgrades currently.<br>
+		- Prestige MILESTONES<br>
 	<h3>v0.1</h3><br>
 		- Added the game.<br>
 		- Yeah<br>

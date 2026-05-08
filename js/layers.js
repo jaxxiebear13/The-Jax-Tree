@@ -140,19 +140,19 @@ addLayer("r", {
             title: "Use The Radiation",
             description: "x1.1 prestige point gain",
             cost: new Decimal(2000),
-            unlocked() { return hasUpgrade('r', 35) || hasUpgrade('p', 13)}
+            unlocked() { return hasUpgrade('r', 35) && hasUpgrade('p', 13)}
         },
         42: {
             title: "Invent",
             description: "x1.1 prestige point gain",
             cost: new Decimal(3500),
-            unlocked() { return hasUpgrade('r', 41) || hasUpgrade('p', 13)}
+            unlocked() { return hasUpgrade('r', 41) && hasUpgrade('p', 13)}
         },
         43: {
             title: "Destroy!!",
             description: "x1.25 prestige point gain",
             cost: new Decimal(5000),
-            unlocked() { return hasUpgrade('r', 42) || hasUpgrade('p', 13) }
+            unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
         }
     },
     layerShown(){return true}
@@ -173,6 +173,17 @@ addLayer("p", {
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
+    tabFormat: {
+        "Upgrades": {
+            content: ["main-display", "prestige-button", "upgrades"],
+            unlocked() { return hasUpgrade('p', 14) }
+        },
+        "Milestones": {
+            content: ["milestones"],
+            unlocked() { return hasUpgrade('p', 14) }
+        }
+    },
+
     gainMult() {
         mult = new Decimal(1)
         if (hasUpgrade('r', 41)) mult = mult.times(1.1)
@@ -189,6 +200,14 @@ addLayer("p", {
     ],
     canReset() {
         return hasUpgrade('r', 35)
+    },
+    milestones: {
+        0: {
+            requirementDescription: "5 prestige points",
+            effectDescription: "x3 points gain",
+            done() { return player.p.points.gte(5) && hasUpgrade('p', 14) },
+            unlocked() { return hasUpgrade('p', 14) }
+        }
     },
     upgrades: {
         11: {
@@ -208,6 +227,12 @@ addLayer("p", {
             description: "3 new Reset upgrades",
             cost: new Decimal(2),
             unlocked() { return hasUpgrade('p', 12) }
+        },
+        14: {
+            title: "Prestige Milestones",
+            description: "Unlock prestige milestones",
+            cost: new Decimal(3),
+            unlocked() { return hasUpgrade('p', 13) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
