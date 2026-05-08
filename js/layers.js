@@ -15,6 +15,7 @@ addLayer("r", {
     exponent: 0.5, // Reset currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('r', 24)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -27,7 +28,7 @@ addLayer("r", {
     upgrades: {
         11: {
             title: "A New Tree Games!",
-            description: "Generate points",
+            description: "Generate points, if you like points",
             cost: new Decimal(1),
         },
         12: {
@@ -35,6 +36,48 @@ addLayer("r", {
             description: "+1 point gain",
             cost: new Decimal(2),
             unlocked() { return hasUpgrade('r', 11) }
+        },
+        13: {
+            title: "Nothing",
+            description: "+0 point gain :D",
+            cost: new Decimal(2),
+            unlocked() { return hasUpgrade('r', 12) }
+        },
+        14: {
+            title: "PointerS",
+            description: "x2 points gain",
+            cost: new Decimal(4),
+            unlocked() { return hasUpgrade('r', 13) }
+        },
+        15: {
+            title: "Pointest",
+            description: "+1 point gain",
+            cost: new Decimal(6),
+            unlocked() { return hasUpgrade('r', 14) }
+        },
+        21: {
+            title: "A New Row",
+            description: "+0.01 point gain",
+            cost: new Decimal(10),
+            unlocked() { return hasUpgrade('r', 15) }
+        },
+        22: {
+            title: "Generatorless",
+            description: "+1 point gain, but sadly you can't play Generator Incremental",
+            cost: new Decimal(10),
+            unlocked() { return hasUpgrade('r', 21) }
+        },
+        23: {
+            title: "Making Points",
+            description: "x2 points gain, again",
+            cost: new Decimal(20),
+            unlocked() { return hasUpgrade('r', 22) }
+        },
+        24: {
+            title: "Reset Point Stocks",
+            description: "x2 reset points.",
+            cost: new Decimal(20),
+            unlocked() { return hasUpgrade('r', 23) },
         }
     },
     layerShown(){return true}
