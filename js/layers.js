@@ -7,7 +7,7 @@ addLayer("r", {
 		points: new Decimal(0),
     }},
     color: "#c5c5c5",
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    requires: new Decimal(5), // Can be a function that takes requirement increases into account
     resource: "reset points", // Name of reset currency
     baseResource: "points", // Name of resource reset is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -16,6 +16,7 @@ addLayer("r", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('r', 24)) mult = mult.times(2)
+        if (hasUpgrade('p', 11)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -46,6 +47,7 @@ addLayer("r", {
         14: {
             title: "PointerS",
             description: "x2 points gain",
+            tooltip: "x2",
             cost: new Decimal(4),
             unlocked() { return hasUpgrade('r', 13) }
         },
@@ -70,17 +72,110 @@ addLayer("r", {
         23: {
             title: "Making Points",
             description: "x2 points gain, again",
+            tooltip: "x2",
             cost: new Decimal(20),
             unlocked() { return hasUpgrade('r', 22) }
         },
         24: {
             title: "Reset Point Stocks",
             description: "x2 reset points.",
+            tooltip: "x2",
             cost: new Decimal(20),
             unlocked() { return hasUpgrade('r', 23) },
+        },
+        25: {
+            title: "Second Rower",
+            description: "Master the second row, x3 point gain!!",
+            tooltip: "x3",
+            cost: new Decimal(50),
+            unlocked() { return hasUpgrade('r', 24) }
+        },
+        31: {
+            title: "Sharp Point",
+            description: "Reset Points boost Points<br>(Upgrade prices increase greatly after this)",
+            cost: new Decimal(55),
+            tooltip: "(RP+1)^0.5",
+            unlocked() { return hasUpgrade('r', 25) },
+            effect() {
+                let eff = player.r.points.add(1).pow(0.5)
+                return eff
+            },
+
+            effectDisplay() { return format(this.effect()) + "x" },
+        },
+        32: {
+            title: "Comedy = Tragedy + Time",
+            description: "Points boost points",
+            cost: new Decimal(500),
+            tooltip: "(P+1)^0.05",
+            unlocked() { return hasUpgrade('r', 31) },
+            effect() {
+                let eff = player.points.add(1).pow(0.05)
+                return eff
+            },
+
+            effectDisplay() { return format(this.effect()) + "x" },
+        },
+        33: {
+            title: "What Have You Done",
+            description: " ",
+            cost: new Decimal(1000),
+            unlocked() { return hasUpgrade('r', 32) },
+        },
+        34: {
+            title: "It's Over",
+            description: "But is it over?",
+            cost: new Decimal(1000),
+            unlocked() { return hasUpgrade('r', 33) },
+        },
+        35: {
+            title: "Prestige",
+            description: "Give the entire factory up",
+            cost: new Decimal(1500),
+            unlocked() { return hasUpgrade('r', 34) },
         }
     },
     layerShown(){return true}
+})
+
+addLayer("p", {
+    name: "prestige",
+    symbol: "P",
+    position: 1,
+    startData() { return {
+        unlocked: true,
+        points: new Decimal(0),
+    }},
+    color: "#00ff6e",
+    requires: new Decimal(1500), // Can be a function that takes requirement increases into account
+    resource: "prestige points",
+    baseResource: "reset points",
+    baseAmount() {return player.r.points},
+    type: "normal",
+    exponent: 0.5,
+    gainMult() {
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() {
+        return new Decimal(1)
+    },
+    row: 1,
+    hotkeys: [
+        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    canReset() {
+        return hasUpgrade('r', 35)
+    },
+    upgrades: {
+        11: {
+            title: "Your Finally Here",
+            description: "x2 points gain, x2 reset points gain",
+            tooltip: "After all multipliers before Prestige",
+            cost: new Decimal(1),
+        }
+    },
+    layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
 })
 
 addLayer("ach", {
@@ -109,6 +204,11 @@ addLayer("ach", {
             tooltip: "Have 100 reset points",
             image: "resources/images/achievements/13.png",
             done() { return player.r.points.gte(100) },
+        },
+        14: {
+            name: "Progress!",
+            tooltip: "Give the factory up once.",
+            done() { return player.p.points.gte(1) },
         }
     },
 })

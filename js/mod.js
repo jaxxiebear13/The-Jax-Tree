@@ -51,6 +51,11 @@ function getPointGen() {
 		if (hasUpgrade('r', 21)) gain = gain.add(0.01)
 		if (hasUpgrade('r', 22)) gain = gain.add(1)
 		if (hasUpgrade('r', 23)) gain = gain.times(2)
+			// r 24 is for reset points, so it is GONE here
+		if (hasUpgrade('r', 25)) gain = gain.times(3)
+		if (hasUpgrade('r', 31)) gain = gain.times(player.r.points.add(1).pow(0.5))
+		if (hasUpgrade('r', 32)) gain = gain.times(player.points.add(1).pow(0.05))
+		if (hasUpgrade('p', 11)) gain = gain.times(2)
 	//
 	return gain
 }
