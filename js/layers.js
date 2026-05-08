@@ -168,7 +168,7 @@ addLayer("p", {
         resets: new Decimal(0)
     }},
     color: "#00ff6e",
-
+    branches: ["r"],
     requires: new Decimal(1500), // Can be a function that takes requirement increases into account
     resource: "prestige points",
     baseResource: "reset points",
@@ -247,6 +247,7 @@ addLayer("p", {
 
 addLayer("ach", {
     name: "Achievements",
+    tooltip: "Achievements",
     symbol: "A",
     position: 0,
     row: "side",
