@@ -22,7 +22,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Yeah<br>
 		- DISCORD INVITE LINK ONLY HAS 50 USES.`
 
-let winText = `Congratulations! You won!`
+let winText = `Congratulations! You won! That's cool!`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
