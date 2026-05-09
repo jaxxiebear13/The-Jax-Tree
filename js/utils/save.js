@@ -132,8 +132,34 @@ function getStartGrid(layer) {
 	return data;
 }
 
+function cleanData(defaultData, newData) {
+	function isPlainObject(obj) {
+		return obj !== null && typeof obj === "object" && obj.constructor === Object;
+	}
+
+	if (Array.isArray(defaultData)) {
+		if (!Array.isArray(newData)) return;
+		for (item in newData) {
+			if (defaultData[item] === undefined)
+				delete newData[item];
+			else
+				cleanData(defaultData[item], newData[item]);
+		}
+	}
+	else if (isPlainObject(defaultData)) {
+		if (!isPlainObject(newData)) return;
+		for (item in newData) {
+			if (defaultData[item] === undefined)
+				delete newData[item];
+			else
+				cleanData(defaultData[item], newData[item]);
+		}
+	}
+}
+
 function fixSave() {
 	defaultData = getStartPlayer();
+	cleanData(defaultData, player);
 	fixData(defaultData, player);
 
 	for (layer in layers) {
@@ -175,7 +201,7 @@ function fixData(defaultData, newData) {
 				newData[item] = new Decimal(newData[item]);
 		}
 		else if ((!!defaultData[item]) && (typeof defaultData[item] === "object")) {
-			if (newData[item] === undefined || (typeof defaultData[item] !== "object"))
+			if (newData[item] === undefined || newData[item] === null || typeof newData[item] !== "object" || Array.isArray(newData[item]) || newData[item] instanceof Decimal)
 				newData[item] = defaultData[item];
 
 			else
