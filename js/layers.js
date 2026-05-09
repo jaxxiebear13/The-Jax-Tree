@@ -395,7 +395,7 @@ addLayer("ach", {
             name: "Progress!",
             tooltip: "Give the factory up once.",
             image: "resources/images/achievements/14.png",
-            done() { return player.p.resets.gte(1) },
+            done() { return player.p.points.gte(1) },
         },
         15: {
             name: "Progress?",
