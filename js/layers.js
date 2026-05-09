@@ -438,7 +438,7 @@ addLayer("reb", {
             title: "ReMile",
             description: "Unlock 1 milestone in prestige and rebirth",
             cost: new Decimal(8),
-            unlocked() { return hasUpgrade('reb', 14) }
+            unlocked() { return hasUpgrade('reb', 15) }
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
