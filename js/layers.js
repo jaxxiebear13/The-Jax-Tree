@@ -474,6 +474,23 @@ addLayer("sb", {
                 player.achievements = ["11", "12", "13", "14"]
                 player.p.milestones = []
             }
+        },
+        12: {
+           display() { return "Rebirth" },
+           tooltip() { return "A greater reset layer above Prestige."},
+           canClick() { return true },
+           color() { return "#4287ff" },
+            onClick() {
+                layerDataReset('r')
+                player.p.points = new Decimal(0)
+                player.p.resets = new Decimal(0)
+                player.reb.points = new Decimal(1)
+                player.r.upgrades = []
+                player.p.upgrades = []
+                player.reb.upgrades = []
+                player.achievements = ["11", "12", "13", "14", "15", "16"]
+                player.p.milestones = ["0", "1"]
+            }
         }
     }
 })
