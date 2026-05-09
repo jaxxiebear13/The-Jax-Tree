@@ -184,12 +184,10 @@ addLayer("p", {
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
-    doReset(layer) {
-        if (layer === "reb") {
-            layerDataReset(this.layer, ["milestones"])
+    doReset(resettingLayer) {
+        if (layers[resettingLayer].row > this.row) {
+            layerDataReset(this.layer, ["milestones"]);
         }
-        resets = player.p.resets.add(1)
-        player.p.resets = resets
     },
     tabFormat: {
         "Upgrades": {
