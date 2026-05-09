@@ -228,7 +228,7 @@ function loadOptions() {
 		options = getStartOptions()
 	if (themes.indexOf(options.theme) < 0) theme = "default"
 	fixData(options, getStartOptions())
-
+	if (options.music === undefined) options.music = true
 }
 
 function setupModInfo() {
