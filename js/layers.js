@@ -461,6 +461,7 @@ addLayer("sb", {
         11: {
            display() { return "Prestige" },
            tooltip() { return "The first reset layer, other than Reset Points."},
+           canClick() { return true },
            color() { return "#00ff6e" },
             onClick() {
                 layerDataReset('r')
