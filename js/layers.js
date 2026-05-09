@@ -164,7 +164,6 @@ addLayer("r", {
             unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
         }
     },
-    autoUpgrade() { return hasUpgrade('reb', 13) },
     layerShown(){return true}
 })
 
