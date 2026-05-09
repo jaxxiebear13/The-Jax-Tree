@@ -304,9 +304,58 @@ addLayer("p", {
             tooltip: "Real effect: x2 reset point gain",
             cost: new Decimal(50),
             unlocked() { return hasUpgrade('p', 23) }
+        },
+        25: {
+            title: "Efficient Legality",
+            description: "RID of Protestors",
+            tooltip: "Real effect: You become soulless. Rebirth",
+            cost: new Decimal(100),
+            unlocked() { return hasUpgrade('p', 24) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
+})
+
+addLayer("reb", {
+    name: "Rebirth",
+    symbol: "Re",
+    position: 2,
+    row: 1,
+    color: "#4287ff",
+    resource: "rebirth points",
+    baseResource: "prestige points",
+    baseAmount() { return player.p.points },
+    requires: new Decimal(200),
+    type: "normal",
+    exponent: 0.5,
+    hotkeys: [
+        {key: "b", description: "B: Reset for rebirth points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    gainMult() {
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() {
+        return new Decimal(1)
+    },
+    doReset() {
+        resets = player.reb.resets.add(1)
+        player.reb.resets = resets
+    },
+    startData() { return {
+        unlocked: true,
+        points: new Decimal(0),
+        resets: new Decimal(0)
+    }},
+    upgrades: {
+        11: {
+            title: "ReStart",
+            description: "x2 prestige points, x3 reset points, x4 points",
+            tooltip: "Welcome back.",
+            cost: new Decimal(1),
+        }
+    },
+    layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
 })
 
 addLayer("ach", {
@@ -354,6 +403,12 @@ addLayer("ach", {
             tooltip: "Start automating Reset points",
             image: "resources/images/achievements/16.png",
             done() { return hasUpgrade('p', 21) }
+        },
+        17: {
+            name: "Soulless",
+            tooltip: "Rebirth",
+            image: "resources/images/achievements/17.png",
+            done() { return player.r.resets.gte(1) }
         }
     },
 })
