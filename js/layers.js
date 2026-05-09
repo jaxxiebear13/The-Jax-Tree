@@ -366,6 +366,13 @@ addLayer("reb", {
     hotkeys: [
         {key: "b", description: "B: Reset for rebirth points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
+    update(diff) {
+        if (player.musicTrack === undefined) player.musicTrack = 1
+        if (player.reb.points.gte(5) && player.musicTrack !== 4) {
+            player.musicTrack = 4
+            if (typeof updateMusicSource === "function") updateMusicSource()
+        }
+    },
     gainMult() {
         mult = new Decimal(1)
         if (hasUpgrade('reb', 22)) mult = mult.times(1.5)
@@ -383,21 +390,6 @@ addLayer("reb", {
     doReset(layer) {
         if (layer === "reb") {
             layerDataReset('p', ["milestones"])
-        }
-    },
-    update(diff) {
-        if (player.musicTrack === undefined) player.musicTrack = 1
-        if (player.musicTrack === 1 && player.p.points.gte(5)) {
-            player.musicTrack = 2
-            if (typeof updateMusicSource === "function") updateMusicSource()
-        }
-        if (player.musicTrack === 2 && player.p.points.gte(100)) {
-            player.musicTrack = 3
-            if (typeof updateMusicSource === "function") updateMusicSource()
-        }
-        if (player.musicTrack === 3 && player.reb.points.gte(5)) {
-            player.musicTrack = 4
-            if (typeof updateMusicSource === "function") updateMusicSource()
         }
     },
     tabFormat: {

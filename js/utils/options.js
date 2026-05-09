@@ -47,7 +47,7 @@ function setupMusic() {
 function updateMusicSource() {
 	if (!layeredMusic) setupMusic();
 	let track = (player && player.musicTrack) ? player.musicTrack : 1;
-	let fileName = track === 3 ? "layer3.ogg" : track === 2 ? "layer2.ogg" : "layer1.ogg";
+	let fileName = track === 4 ? "layer4.ogg" : track === 3 ? "layer3.ogg" : track === 2 ? "layer2.ogg" : "layer1.ogg";
 
 	let newSrc = `resources/song/${fileName}`;
 	if (!layeredMusic.src.endsWith(newSrc)) {
