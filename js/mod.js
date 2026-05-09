@@ -83,7 +83,7 @@ function isEndgame() {
 
 // Style for the background, can be a function
 var backgroundStyle = {
-
+	
 }
 
 // You can change this if you have things that can be messed up by long tick lengths

@@ -164,16 +164,6 @@ addLayer("r", {
             unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
         }
     },
-    update() {
-        let audio = document.getElementById('resetMusic');
-        if (player.tab === 'r') {
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            }
-        } else {
-            audio.pause();
-        }
-    },
     layerShown(){return true}
 })
 
