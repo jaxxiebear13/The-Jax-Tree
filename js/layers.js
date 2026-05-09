@@ -188,7 +188,7 @@ addLayer("p", {
     tabFormat: {
         "Upgrades": {
             content: ["main-display", "prestige-button", "upgrades"],
-            unlocked() { return hasUpgrade('p', 14) }
+            unlocked() { return true }
         },
         "Milestones": {
             content: ["milestones"],
