@@ -453,7 +453,7 @@ addLayer("sb", {
     infoboxes: {
         info: {
             title: "Info",
-            body() { return "This is a savebank. It allows you to go to various points of progress in the game. BEWARE, as one click sets the progress, so you can accidentally go ahead or backwards" },
+            body() { return "This is a savebank. It allows you to go to various points of progress in the game. BEWARE, as one click sets the progress, so you can accidentally go ahead or backwards. If you use a savebank, your run counts as Spoiled" },
         }
     },
 
@@ -471,7 +471,7 @@ addLayer("sb", {
                 player.r.upgrades = []
                 player.p.upgrades = []
                 player.reb.upgrades = []
-                player.achievements = []
+                player.achievements = ["11", "12", "13", "14"]
                 player.p.milestones = []
             }
         }
