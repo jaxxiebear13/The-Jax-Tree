@@ -164,7 +164,9 @@ addLayer("r", {
             unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
         }
     },
+    autoUpgrade() { return hasUpgrade('reb', 13) },
     layerShown(){return true}
+    
 })
 
 addLayer("p", {
@@ -366,7 +368,7 @@ addLayer("reb", {
         12: {
             title: "ReAuto",
             description: "Generate 20% of your reset points per second, Generate 5% of your prestige points per second",
-            tooltip: "Points * 0.05<br>Prestige Points * 0.20<br>Further levels are prioritized",
+            tooltip: "Points * 0.20<br>Prestige Points * 0.05<br>Further levels are prioritized",
             cost: new Decimal(1),
             unlocked() { return hasUpgrade('reb', 11) },
         },
