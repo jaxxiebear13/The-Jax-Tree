@@ -228,6 +228,11 @@ addLayer("p", {
     canReset() {
         return hasUpgrade('r', 35)
     },
+    doReset(layer) {
+        if (layer === "p") {
+            player.p.resets = player.p.resets.add(1)
+        }
+    },
     milestones: {
         0: {
             requirementDescription: "5 prestige points",
