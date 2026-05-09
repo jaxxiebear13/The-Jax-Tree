@@ -389,6 +389,13 @@ addLayer("ach", {
     row: "side",
     color: "#fff203",
     layerShown() { return true },
+
+    infoboxes: {
+        info: {
+            title: "Info",
+            body() { return "These are achievements. They are achievements. You achieve them by playing the game, and therefore you achieve the achievements. Good luck achieving these achievements" },
+        }
+    },
     
     achievements: {
         11: {
@@ -453,7 +460,7 @@ addLayer("sb", {
     infoboxes: {
         info: {
             title: "Info",
-            body() { return "This is a savebank. It allows you to go to various points of progress in the game. BEWARE, as one click sets the progress, so you can accidentally go ahead or backwards. If you use a savebank, your run counts as Spoiled" },
+            body() { return "This is a savebank. It allows you to go to various points of progress in the game. BEWARE, as one click sets the progress, so you can accidentally go ahead or backwards. I use these to debug the game, as my save also gets corrupted while editing and playing" },
         }
     },
 
