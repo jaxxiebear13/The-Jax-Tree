@@ -216,10 +216,6 @@ function load() {
 	updateTemp();
 	updateTabFormats()
 	loadVue();
-	if (options.music) {
-		let audio = document.getElementById("bgMusic");
-		audio.play().catch(() => {}); // Ignore if autoplay blocked
-	}
 }
 
 function loadOptions() {

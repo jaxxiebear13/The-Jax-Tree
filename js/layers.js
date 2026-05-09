@@ -20,6 +20,7 @@ addLayer("r", {
     },
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Reset currency exponent
+    tabFormat: ["raw-html", function() {return options.musicToggle ? '<audio controls src="music/all8BitNow.mp3"></audio>' : ""}],
     
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)

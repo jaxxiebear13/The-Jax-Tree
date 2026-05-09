@@ -45,14 +45,6 @@ function changeTreeQuality() {
 	document.body.style.setProperty('--hqProperty2b', on ? "0px 0px 20px var(--background)" : "");
 	document.body.style.setProperty('--hqProperty3', on ? "2px 2px 4px rgba(0, 0, 0, 0.25)" : "none");
 }
-function toggleMusic() {
-	let audio = document.getElementById("bgMusic");
-	if (options.music) {
-		audio.play();
-	} else {
-		audio.pause();
-	}
-}
 function toggleAuto(toggle) {
 	Vue.set(player[toggle[0]], [toggle[1]], !player[toggle[0]][toggle[1]]);
 	needCanvasUpdate=true
