@@ -40,6 +40,9 @@
 
 
 <body onload="load()" onmousemove="updateMouse(event)">
+	<audio id="resetMusic" loop>
+		<source src="resources/song/layer1.ogg" type="audio/ogg">
+	</audio>
 	<div id="app">
 		<canvas id="treeCanvas" class="canvas" v-if="!(tmp.gameEnded && !player.keepGoing)"></canvas>
 

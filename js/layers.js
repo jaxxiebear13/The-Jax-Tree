@@ -20,6 +20,7 @@ addLayer("r", {
     },
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Reset currency exponent
+    
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('r', 24)) mult = mult.times(2)
@@ -161,6 +162,16 @@ addLayer("r", {
             description: "x1.25 prestige point gain",
             cost: new Decimal(5000),
             unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
+        }
+    },
+    update() {
+        let audio = document.getElementById('resetMusic');
+        if (player.tab === 'r') {
+            if (audio.paused) {
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            }
+        } else {
+            audio.pause();
         }
     },
     layerShown(){return true}
