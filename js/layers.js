@@ -13,7 +13,7 @@ addLayer("r", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     passiveGeneration() {
 
-        
+
         if (hasUpgrade('reb', 15)) return 0.35
         if (hasUpgrade('reb', 12)) return 0.20
         if (hasUpgrade('p', 23)) return 0.10
@@ -256,6 +256,12 @@ addLayer("p", {
             tooltip: "Applied after Reset multipliers and before Prestige upgrade multipliers",
             done() { return player.p.points.gte(15) && hasMilestone('p', 0) },
             unlocked() { return hasUpgrade('p', 14) && hasMilestone('p', 0) }
+        },
+        2: {
+            requirementDescription: "500 prestige points",
+            effectDescription: "x1.5 rebirth point gain",
+            done() { return player.p.points.gte(500) && hasMilestone('p', 1) },
+            unlocked() { return hasUpgrade('reb', 21) && hasMilestone('p', 1) }
         }
     },
     upgrades: {
@@ -376,6 +382,24 @@ addLayer("reb", {
             layerDataReset('p', ["milestones"])
         }
     },
+    tabFormat: {
+        "Upgrades": {
+            content: ["main-display", "prestige-button", "upgrades"],
+            unlocked() { return true }
+        },
+        "Milestones": {
+            content: ["milestones"],
+            unlocked() { return hasUpgrade('reb', 21) }
+        }
+    },
+    milestones: {
+        0: {
+            requirementDescription: "50 rebirth points",
+            effectDescription: "x1.5 rebirth point gain",
+            done() { return player.reb.points.gte(50) && hasUpgrade('reb', 21) },
+            unlocked() { return hasUpgrade('reb', 21) }
+        }
+    },
     upgrades: {
         11: {
             title: "ReStart",
@@ -408,6 +432,12 @@ addLayer("reb", {
             description: "Get 35% of your reset points per second",
             tooltip: "Points * 0.35<br>Further levels are prioritized",
             cost: new Decimal(5),
+            unlocked() { return hasUpgrade('reb', 14) }
+        },
+        21: {
+            title: "ReMile",
+            description: "Unlock 1 milestone in prestige and rebirth",
+            cost: new Decimal(8),
             unlocked() { return hasUpgrade('reb', 14) }
         }
     },
