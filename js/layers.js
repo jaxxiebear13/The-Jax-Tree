@@ -27,6 +27,7 @@ addLayer("r", {
         if (hasUpgrade('p', 11)) mult = mult.times(2)
         if (hasUpgrade('p', 12)) mult = mult.times(2)
         if (hasUpgrade('p', 24)) mult = mult.times(2)
+        if (hasUpgrade('p', 31)) mult = mult.times(1.5)
         if (hasUpgrade('reb', 11)) mult = mult.times(3)
         return mult
     },
@@ -321,6 +322,20 @@ addLayer("p", {
             tooltip: "Real effect: You become soulless. Rebirth",
             cost: new Decimal(100),
             unlocked() { return hasUpgrade('p', 24) }
+        },
+        31: {
+            title: "Uranium Creation",
+            description: "x1.5 reset point gain",
+            tooltip: "Applied after all other multipliers before Rebirth",
+            cost: new Decimal(100),
+            unlocked() { return hasUpgrade('p', 25) && hasUpgrade('reb', 14) }
+        },
+        32: {
+            title: "'Free' the Imprisoned",
+            description: "RID of the Suspicious",
+            tooltip: "x1.1 rebirth point gain",
+            cost: new Decimal(450),
+            unlocked() { return hasUpgrade('p', 31) && hasUpgrade('reb', 14) }
         }
     },
     layerShown(){return hasUpgrade('r', 35) || hasAchievement('ach', 14)}
@@ -344,6 +359,7 @@ addLayer("reb", {
     ],
     gainMult() {
         mult = new Decimal(1)
+        if (hasUpgrade('p', 32)) mult = mult.times(1.1)
         return mult
     },
     gainExp() {
@@ -374,10 +390,16 @@ addLayer("reb", {
         },
         13: {
             title: "ReUpgrade",
-            description: "Automatically upgrade your reset point upgrades",
+            description: "Automatically buy your reset point upgrades",
             tooltip: "Every tick",
             cost: new Decimal(2),
             unlocked() { return hasUpgrade('reb', 12) },
+        },
+        14: {
+            title: "ReDo",
+            description: "Unlock 2 new prestige upgrades",
+            cost: new Decimal(2),
+            unlocked() { return hasUpgrade('reb', 13) }
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
