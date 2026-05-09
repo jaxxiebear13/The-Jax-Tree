@@ -442,4 +442,38 @@ addLayer("ach", {
     },
 })
 
+addLayer("sb", {
+    name: "Savebank",
+    tooltip: "Savebank",
+    symbol: "SB",
+    position: 1,
+    row: "side",
+    color: "#ff07ea",
+    layerShown() { return true },
+    infoboxes: {
+        info: {
+            title: "Info",
+            body() { return "This is a savebank. It allows you to go to various points of progress in the game. BEWARE, as one click sets the progress, so you can accidentally go ahead or backwards" },
+        }
+    },
+
+    clickables: {
+        11: {
+           display() { return "Prestige" },
+           tooltip() { return "The first reset layer, other than Reset Points."},
+           color() { return "#00ff6e" },
+            onClick() {
+                layerDataReset('r')
+                player.p.points = new Decimal(1)
+                player.p.resets = new Decimal(1)
+                player.reb.points = new Decimal(0)
+                player.r.upgrades = []
+                player.p.upgrades = []
+                player.reb.upgrades = []
+                player.achievements = []
+                player.p.milestones = []
+            }
+        }
+    }
+})
 
