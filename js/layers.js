@@ -328,6 +328,7 @@ addLayer("reb", {
     requires: new Decimal(200),
     type: "normal",
     exponent: 0.5,
+    branches: ["p"],
     hotkeys: [
         {key: "b", description: "B: Reset for rebirth points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
@@ -403,7 +404,7 @@ addLayer("ach", {
             name: "Soulless",
             tooltip: "Rebirth",
             image: "resources/images/achievements/17.png",
-            done() { return player.r.points.gte(1) }
+            done() { return player.reb.points.gte(1) }
         }
     },
 })
