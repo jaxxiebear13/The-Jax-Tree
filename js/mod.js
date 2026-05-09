@@ -60,6 +60,7 @@ function getPointGen() {
 		if (hasUpgrade('r', 32)) gain = gain.times(player.points.add(1).pow(0.05))
 		if (hasMilestone('p', 0)) gain = gain.times(3)
 		if (hasUpgrade('p', 11)) gain = gain.times(2)
+		if (hasUpgrade('reb', 11)) gain = gain.times(4)
 	//
 	return gain
 }

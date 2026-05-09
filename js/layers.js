@@ -27,6 +27,7 @@ addLayer("r", {
         if (hasUpgrade('p', 11)) mult = mult.times(2)
         if (hasUpgrade('p', 12)) mult = mult.times(2)
         if (hasUpgrade('p', 24)) mult = mult.times(2)
+        if (hasUpgrade('reb', 11)) mult = mult.times(3)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -183,7 +184,10 @@ addLayer("p", {
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
-    doReset() {
+    doReset(layer) {
+        if (layer === "reb") {
+            layerDataReset(this.layer, ["milestones"])
+        }
         resets = player.p.resets.add(1)
         player.p.resets = resets
     },
@@ -206,6 +210,7 @@ addLayer("p", {
         if (hasMilestone('p', 1)) mult = mult.times(2)   
         if (hasUpgrade('p', 15)) mult = mult.times(1.25)
         if (hasUpgrade('p', 22)) mult = mult.times(1.25)
+        if (hasUpgrade('reb', 11)) mult = mult.times(2)
         return mult
     },
     gainExp() {
