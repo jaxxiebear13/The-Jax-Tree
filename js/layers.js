@@ -13,7 +13,7 @@ addLayer("r", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     passiveGeneration() {
 
-
+        if (hasUpgrade('reb', 12)) return 0.20
         if (hasUpgrade('p', 23)) return 0.10
         if (hasUpgrade('p', 21)) return 0.05
         return 0
@@ -233,6 +233,10 @@ addLayer("p", {
             player.p.resets = player.p.resets.add(1)
         }
     },
+    passiveGeneration() {
+        if (hasUpgrade('reb', 12)) return 0.05
+        return 0
+    },
     milestones: {
         0: {
             requirementDescription: "5 prestige points",
@@ -358,6 +362,13 @@ addLayer("reb", {
             description: "x2 prestige points, x3 reset points, x4 points",
             tooltip: "Welcome back.",
             cost: new Decimal(1),
+        },
+        12: {
+            title: "ReAuto",
+            description: "Generate 20% of your reset points per second, Generate 5% of your prestige points per second",
+            tooltip: "Points * 0.05<br>Prestige Points * 0.20<br>Further levels are prioritized",
+            cost: new Decimal(1),
+            unlocked() { return hasUpgrade('reb', 11) },
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
