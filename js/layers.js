@@ -184,9 +184,7 @@ addLayer("p", {
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
-    doReset(layer) {
-        layerDataReset('p', ["milestones"])
-    },
+
     tabFormat: {
         "Upgrades": {
             content: ["main-display", "prestige-button", "upgrades"],
