@@ -20,8 +20,6 @@ addLayer("r", {
     },
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Reset currency exponent
-    tabFormat: ["raw-html", function() {return options.musicToggle ? '<audio controls src="music/all8BitNow.mp3"></audio>' : ""}],
-    
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('r', 24)) mult = mult.times(2)
@@ -217,6 +215,13 @@ addLayer("p", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
+    update(diff) {
+        if (player.musicTrack === undefined) player.musicTrack = 1
+        if (player.musicTrack === 1 && player.p.points.gte(5)) {
+            player.musicTrack = 2
+            if (typeof updateMusicSource === "function") updateMusicSource()
+        }
+    },
     canReset() {
         return hasUpgrade('r', 35)
     },

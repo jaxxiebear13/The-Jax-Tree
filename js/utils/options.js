@@ -19,6 +19,8 @@ function getStartOptions() {
 	}
 }
 
+let layeredMusic;
+
 function toggleOpt(name) {
 	if (name == "oldStyle" && styleCooldown > 0)
 		return;
@@ -31,6 +33,43 @@ function toggleOpt(name) {
 	if (name == "music")
 		toggleMusic();
 }
+
+function setupMusic() {
+	if (layeredMusic) return;
+	layeredMusic = document.createElement("audio");
+	layeredMusic.id = "layeredMusic";
+	layeredMusic.loop = true;
+	layeredMusic.autoplay = true;
+	layeredMusic.style.display = "none";
+	document.body.appendChild(layeredMusic);
+	updateMusicSource();
+}
+
+function updateMusicSource() {
+	if (!layeredMusic) setupMusic();
+	let track = (player && player.musicTrack) ? player.musicTrack : 1;
+	let fileName = track === 2 ? "layer2.ogg" : "layer1.ogg";
+	let newSrc = `resources/song/${fileName}`;
+	if (!layeredMusic.src.endsWith(newSrc)) {
+		layeredMusic.src = newSrc;
+		layeredMusic.load();
+	}
+	if (options.music) {
+		layeredMusic.play().catch(() => {});
+	} else {
+		layeredMusic.pause();
+	}
+}
+
+function toggleMusic() {
+	if (!layeredMusic) setupMusic();
+	if (options.music) {
+		layeredMusic.play().catch(() => {});
+	} else {
+		layeredMusic.pause();
+	}
+}
+
 var styleCooldown = 0;
 function updateStyle() {
 	styleCooldown = 1;

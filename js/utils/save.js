@@ -22,6 +22,7 @@ function startPlayerBase() {
 		hasNaN: false,
 
 		points: modInfo.initialStartPoints,
+		musicTrack: 1,
 		subtabs: {},
 		lastSafeTab: (readData(layoutInfo.showTree) ? "none" : layoutInfo.startTab)
 	};
@@ -216,6 +217,7 @@ function load() {
 	updateTemp();
 	updateTabFormats()
 	loadVue();
+	setupMusic();
 }
 
 function loadOptions() {
