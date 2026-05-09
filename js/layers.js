@@ -338,14 +338,9 @@ addLayer("reb", {
     gainExp() {
         return new Decimal(1)
     },
-    doReset() {
-        resets = player.reb.resets.add(1)
-        player.reb.resets = resets
-    },
     startData() { return {
         unlocked: true,
         points: new Decimal(0),
-        resets: new Decimal(0)
     }},
     upgrades: {
         11: {
@@ -408,7 +403,7 @@ addLayer("ach", {
             name: "Soulless",
             tooltip: "Rebirth",
             image: "resources/images/achievements/17.png",
-            done() { return player.r.resets.gte(1) }
+            done() { return player.r.points.gte(1) }
         }
     },
 })
