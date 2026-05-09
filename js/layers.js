@@ -184,10 +184,8 @@ addLayer("p", {
     baseAmount() {return player.r.points},
     type: "normal",
     exponent: 0.5,
-    doReset(resettingLayer) {
-        if (layers[resettingLayer].row > this.row) {
-            layerDataReset(this.layer, ["milestones"]);
-        }
+    doReset(layer) {
+        layerDataReset('p', ["milestones"])
     },
     tabFormat: {
         "Upgrades": {
