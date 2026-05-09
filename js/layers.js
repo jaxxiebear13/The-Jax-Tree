@@ -13,6 +13,8 @@ addLayer("r", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     passiveGeneration() {
 
+        
+        if (hasUpgrade('reb', 15)) return 0.35
         if (hasUpgrade('reb', 12)) return 0.20
         if (hasUpgrade('p', 23)) return 0.10
         if (hasUpgrade('p', 21)) return 0.05
@@ -400,6 +402,13 @@ addLayer("reb", {
             description: "Unlock 2 new prestige upgrades",
             cost: new Decimal(2),
             unlocked() { return hasUpgrade('reb', 13) }
+        },
+        15: {
+            title: "ReFire",
+            description: "Get 35% of your reset points per second",
+            tooltip: "Points * 0.35<br>Further levels are prioritized",
+            cost: new Decimal(5),
+            unlocked() { return hasUpgrade('reb', 14) }
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
