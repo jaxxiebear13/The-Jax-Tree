@@ -260,7 +260,7 @@ addLayer("p", {
         2: {
             requirementDescription: "500 prestige points",
             effectDescription: "x1.5 rebirth point gain",
-            done() { return player.p.points.gte(500) && hasMilestone('p', 1) },
+            done() { return player.p.points.gte(500) && hasMilestone('p', 1) && hasUpgrade('reb', 21) },
             unlocked() { return hasUpgrade('reb', 21) && hasMilestone('p', 1) }
         }
     },
