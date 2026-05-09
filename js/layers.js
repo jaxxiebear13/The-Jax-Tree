@@ -342,6 +342,11 @@ addLayer("reb", {
         unlocked: true,
         points: new Decimal(0),
     }},
+    doReset(layer) {
+        if (layer === "reb") {
+            layerDataReset('p', ["milestones"])
+        }
+    },
     upgrades: {
         11: {
             title: "ReStart",
