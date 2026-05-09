@@ -164,6 +164,7 @@ addLayer("r", {
             unlocked() { return hasUpgrade('r', 42) && hasUpgrade('p', 13) }
         }
     },
+    autoUpgrade() { return hasUpgrade('reb', 13) },
     layerShown(){return true}
 })
 
@@ -369,6 +370,13 @@ addLayer("reb", {
             tooltip: "Points * 0.05<br>Prestige Points * 0.20<br>Further levels are prioritized",
             cost: new Decimal(1),
             unlocked() { return hasUpgrade('reb', 11) },
+        },
+        13: {
+            title: "ReUpgrade",
+            description: "Automatically upgrade your reset point upgrades",
+            tooltip: "Every tick",
+            cost: new Decimal(2),
+            unlocked() { return hasUpgrade('reb', 12) },
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
@@ -425,6 +433,12 @@ addLayer("ach", {
             tooltip: "Rebirth",
             image: "resources/images/achievements/17.png",
             done() { return player.reb.points.gte(1) }
+        },
+        18: {
+            name: "Potato",
+            tooltip: "Automate Reset point upgrades",
+            image: "resources/images/achievements/18.png",
+            done() { return hasUpgrade('reb', 13) }
         }
     },
 })
