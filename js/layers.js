@@ -471,7 +471,7 @@ addLayer("sb", {
                 player.r.upgrades = []
                 player.p.upgrades = []
                 player.reb.upgrades = []
-                player.achievements = ["11", "12", "13", "14"]
+                player.achievements = ['11', '12', '13', '14']
                 player.p.milestones = []
             }
         },
@@ -488,8 +488,8 @@ addLayer("sb", {
                 player.r.upgrades = []
                 player.p.upgrades = []
                 player.reb.upgrades = []
-                player.achievements = ["11", "12", "13", "14", "15", "16"]
-                player.p.milestones = ["0", "1"]
+                player.achievements = ['11', '12', '13', '14', '15', '16']
+                player.p.milestones = ['0', '1']
             }
         }
     }
