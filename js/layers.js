@@ -210,6 +210,7 @@ addLayer("p", {
         if (hasUpgrade('p', 15)) mult = mult.times(1.25)
         if (hasUpgrade('p', 22)) mult = mult.times(1.25)
         if (hasUpgrade('reb', 11)) mult = mult.times(2)
+        if (hasUpgrade('reb', 22)) mult = mult.times(0.6)
         return mult
     },
     gainExp() {
@@ -367,6 +368,8 @@ addLayer("reb", {
     ],
     gainMult() {
         mult = new Decimal(1)
+        if (hasUpgrade('reb', 22)) mult = mult.times(1.5)
+        if (hasUpgrade('reb', 23)) mult = mult.times(1.25)
         if (hasUpgrade('p', 32)) mult = mult.times(1.1)
         return mult
     },
@@ -384,12 +387,18 @@ addLayer("reb", {
     },
     tabFormat: {
         "Upgrades": {
-            content: ["main-display", "prestige-button", "upgrades"],
+            content: ["main-display", "prestige-button", "upgrades", "infoboxes"],
             unlocked() { return true }
         },
         "Milestones": {
             content: ["milestones"],
             unlocked() { return hasUpgrade('reb', 21) }
+        }
+    },
+    infoboxes: {
+        info: {
+            title: "Info",
+            body() { return "Congratulations on making it to the Rebirth layer. This layer introduces optional upgrades that usually give you a boost, but decrease a specific currency." },
         }
     },
     milestones: {
@@ -439,6 +448,19 @@ addLayer("reb", {
             description: "Unlock 1 milestone in prestige and rebirth",
             cost: new Decimal(8),
             unlocked() { return hasUpgrade('reb', 15) }
+        },
+        22: {
+            title: "ReInvent-D",
+            description: "x1.5 rebirth point gain, x0.6 prestige point gain",
+            tooltip: "Not required for progress. Applied after all prestige multipliers...",
+            cost: new Decimal(10),
+            unlocked() { return hasUpgrade('reb', 21) }
+        },
+        23: {
+            title: "ReDestroy",
+            description: "x1.25 rebirth point gain",
+            cost: new Decimal(10),
+            unlocked() { return hasUpgrade('reb', 21) } // intentional
         }
     },
     layerShown() { return hasUpgrade('p', 25) || hasAchievement('ach', 17) }
