@@ -221,6 +221,10 @@ addLayer("p", {
             player.musicTrack = 2
             if (typeof updateMusicSource === "function") updateMusicSource()
         }
+        if (player.musicTrack === 2 && player.p.points.gte(100)) {
+            player.musicTrack = 3
+            if (typeof updateMusicSource === "function") updateMusicSource()
+        }
     },
     canReset() {
         return hasUpgrade('r', 35)
